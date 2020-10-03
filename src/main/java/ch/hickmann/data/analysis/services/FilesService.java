@@ -3,8 +3,8 @@ package ch.hickmann.data.analysis.services;
 import ch.hickmann.data.analysis.components.FilesComponent;
 import ch.hickmann.data.analysis.domains.ProcessedFile;
 import ch.hickmann.data.analysis.saga.services.SagaService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @Service
 public class FilesService {
 
-    private static final Logger logger = LogManager.getLogger(FilesService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FilesService.class);
 
     private final SagaService sagaService;
     private final ReportsService reportsService;

@@ -5,8 +5,8 @@ import ch.hickmann.data.analysis.domains.ProcessedFile;
 import ch.hickmann.data.analysis.domains.Sale;
 import ch.hickmann.data.analysis.domains.Seller;
 import ch.hickmann.data.analysis.domains.exceptions.FileException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 public class FilesComponent {
 
-    private static final Logger logger = LogManager.getLogger(FilesComponent.class);
+    private static final Logger logger = LoggerFactory.getLogger(FilesComponent.class);
     private static final String SELLER_CODE = "001";
     private static final String CLIENT_CODE = "002";
     private static final String SALE_CODE = "003";
@@ -43,7 +43,7 @@ public class FilesComponent {
         List<String> fileLines = readFileLines(path);
         ProcessedFile processedFile = process(fileLines);
 
-        return null;
+        return processedFile;
     }
 
     public ProcessedFile process(List<String> fileLines) {

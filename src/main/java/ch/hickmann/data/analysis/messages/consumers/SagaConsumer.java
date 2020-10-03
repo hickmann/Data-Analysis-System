@@ -3,8 +3,8 @@ package ch.hickmann.data.analysis.messages.consumers;
 import ch.hickmann.data.analysis.domains.exceptions.BusinessException;
 import ch.hickmann.data.analysis.messages.domains.SagaMessage;
 import ch.hickmann.data.analysis.services.FilesService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SagaConsumer {
 
-    private static final Logger logger = LogManager.getLogger(SagaConsumer.class);
+    private static final Logger logger =  LoggerFactory.getLogger(SagaConsumer.class);
 
     private final FilesService filesService;
 
