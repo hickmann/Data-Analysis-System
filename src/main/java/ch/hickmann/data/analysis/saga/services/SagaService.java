@@ -42,7 +42,17 @@ public class SagaService {
             saveAndSendSagaMessage(sagaEntity);
         } else {
             logger.info("Duplicated file found - {}", path);
+            error(path);
         }
+    }
+
+    public void error(String path) {
+        SagaEntity sagaEntity = sagaRepository.findByPath(path);
+        sagaEntity.setStatus(SagaStatusEnum.ERROR);
+
+        saveAndSendSagaMessage(sagaEntity);
+
+        logger.info("Saga ERROR - {}", path);
     }
 
     public void complete(String path) {
