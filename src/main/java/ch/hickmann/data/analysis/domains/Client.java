@@ -6,6 +6,15 @@ public class Client {
     private String cnpj;
     private String businessArea;
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", cnpj='" + cnpj + '\'' +
+                ", businessArea='" + businessArea + '\'' +
+                '}';
+    }
+
     public static Builder builder() { return new Builder(); }
 
     public String getName() {

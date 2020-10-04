@@ -7,6 +7,15 @@ public class SoldItem {
     private Integer quantity;
     private BigDecimal price;
 
+    @Override
+    public String toString() {
+        return "SoldItem{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
+    }
+
     public BigDecimal priceSum() {
         return getPrice().multiply(BigDecimal.valueOf(quantity));
     }

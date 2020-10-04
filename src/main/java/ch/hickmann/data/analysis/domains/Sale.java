@@ -16,6 +16,15 @@ public class Sale {
                 .orElse(BigDecimal.ZERO);
     }
 
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "id=" + id +
+                ", items=" + items +
+                ", sellerName='" + sellerName + '\'' +
+                '}';
+    }
+
     public static Builder builder() { return new Builder(); }
 
     public Long getId() {
