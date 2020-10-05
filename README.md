@@ -28,14 +28,14 @@ Para executar o programa utilizando Maven, basta digitar o seguinte comando:
 mvn spring-boot:run
 ```
 
-# Execução via docker
+## Execução via docker
 ```
 git clone https://github.com/hickmann/Data-Analysis-System.git
 cd Data-Analysis-System
 docker-compose up
 ```
 
-#Considerações
+## Considerações
 
 Inicialmente eu pensei em utilizar kafka + Spring Cloud Stream mas depois resolvi usar o approach clássico de mensageria e fui para o JMS activeMQ, acho que não seria necessário todas as usabilidades do Kafka e no final eu só utilizaria ele como uma mensageria e não como uma plataforma de streaming. Ao utilizar o Kafka eu conseguiria fazer uso das suas funções como DLQs que me ajudaríam a montar um esquema de retrys para os arquivos, mas escolhi até por motivos de demonstração criar o padrão Saga Pattern que é amplamente utilizado para controle de erros entre microsserviços.
 
