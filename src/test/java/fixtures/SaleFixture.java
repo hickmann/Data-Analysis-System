@@ -1,4 +1,4 @@
-package Fixtures;
+package fixtures;
 
 import ch.hickmann.data.analysis.domains.Sale;
 import ch.hickmann.data.analysis.domains.SoldItem;

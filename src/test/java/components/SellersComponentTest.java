@@ -1,13 +1,10 @@
 package components;
 
-import Fixtures.SellerFixture;
+import fixtures.SellerFixture;
 import ch.hickmann.data.analysis.components.SellersComponent;
-import ch.hickmann.data.analysis.domains.Client;
 import ch.hickmann.data.analysis.domains.Seller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
 
 public class SellersComponentTest {
 

@@ -1,6 +1,6 @@
 package domains;
 
-import Fixtures.SoldItemsFixture;
+import fixtures.SoldItemsFixture;
 import ch.hickmann.data.analysis.domains.Sale;
 import ch.hickmann.data.analysis.domains.SoldItem;
 import org.junit.jupiter.api.Assertions;

@@ -1,18 +1,11 @@
 package components;
 
-import Fixtures.SaleFixture;
+import fixtures.SaleFixture;
 import ch.hickmann.data.analysis.components.SalesComponent;
 import ch.hickmann.data.analysis.components.SoldItemsComponent;
-import ch.hickmann.data.analysis.domains.Client;
 import ch.hickmann.data.analysis.domains.Sale;
-import ch.hickmann.data.analysis.domains.SoldItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SalesComponentTest {
 
