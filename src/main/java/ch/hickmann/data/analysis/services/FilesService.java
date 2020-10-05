@@ -37,7 +37,7 @@ public class FilesService {
         logger.info("Starting Files Service - {}", FULL_PATH);
         try {
             Files.list(Paths.get(FULL_PATH))
-                    .filter(file -> !isDatFile(file))
+                    .filter(file -> isDatFile(file))
                     .forEach(file -> sagaService.initialize(file.toString()));
         } catch (IOException e) {
             logger.error("It was not possible to find path: {}", FULL_PATH);
@@ -45,7 +45,7 @@ public class FilesService {
     }
 
     private boolean isDatFile(Path file) {
-        return file.endsWith(".dat");
+        return file.toString().endsWith(".dat");
     }
 
     public void startProcessingFile(String path) {

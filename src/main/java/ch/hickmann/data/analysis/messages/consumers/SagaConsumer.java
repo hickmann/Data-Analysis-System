@@ -20,7 +20,7 @@ public class SagaConsumer {
         this.filesService = filesService;
     }
 
-    @JmsListener(destination = "${sagaQueue}", containerFactory = "defaultContainerFactory")
+    @JmsListener(destination = "${sagaQueue}", containerFactory = "myFactory")
     public void receiveMessage(@Payload SagaMessage saga) {
         logger.info("New Saga Message Received - {}", saga);
 
@@ -32,7 +32,6 @@ public class SagaConsumer {
                 filesService.completeProcessingFile(saga.getPath());
                 break;
             case ERROR:
-                break;
             case COMPLETE:
                 break;
             default:
