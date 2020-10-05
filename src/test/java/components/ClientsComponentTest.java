@@ -1,6 +1,6 @@
 package components;
 
-import Fixtures.ClientFixture;
+import fixtures.ClientFixture;
 import ch.hickmann.data.analysis.components.ClientsComponent;
 import ch.hickmann.data.analysis.domains.Client;
 import org.junit.jupiter.api.Assertions;
