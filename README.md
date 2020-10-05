@@ -1,7 +1,7 @@
 # Começando
 Para executar o projeto, será necessário instalar os seguintes programas:
 - [JDK 8: Necessário para executar o projeto Java](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
-- [Maven 3.5.3: Necessário para realizar o build do projeto Java](http://mirror.nbtelecom.com.br/apache/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip)
+- [Maven: Necessário para realizar o build do projeto Java](http://maven.apache.org/download.cgi)
 
 ### Construção
 
