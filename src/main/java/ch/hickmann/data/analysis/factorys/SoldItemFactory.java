@@ -1,4 +1,4 @@
-package ch.hickmann.data.analysis.factory;
+package ch.hickmann.data.analysis.factorys;
 
 import ch.hickmann.data.analysis.domains.SoldItem;
 

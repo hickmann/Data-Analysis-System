@@ -1,7 +1,7 @@
 package ch.hickmann.data.analysis.components;
 
 import ch.hickmann.data.analysis.domains.SoldItem;
-import ch.hickmann.data.analysis.factory.SoldItemFactory;
+import ch.hickmann.data.analysis.factorys.SoldItemFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

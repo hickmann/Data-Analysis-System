@@ -3,8 +3,8 @@ package ch.hickmann.data.analysis.services;
 import ch.hickmann.data.analysis.components.FilesComponent;
 import ch.hickmann.data.analysis.domains.ProcessedFile;
 import ch.hickmann.data.analysis.saga.services.SagaService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @Service
 public class FilesService {
 
-    private static final Logger logger = LogManager.getLogger(FilesService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FilesService.class);
 
     private final SagaService sagaService;
     private final ReportsService reportsService;
@@ -37,7 +37,7 @@ public class FilesService {
         logger.info("Starting Files Service - {}", FULL_PATH);
         try {
             Files.list(Paths.get(FULL_PATH))
-                    .filter(file -> !isDatFile(file))
+                    .filter(file -> isDatFile(file))
                     .forEach(file -> sagaService.initialize(file.toString()));
         } catch (IOException e) {
             logger.error("It was not possible to find path: {}", FULL_PATH);
@@ -45,7 +45,7 @@ public class FilesService {
     }
 
     private boolean isDatFile(Path file) {
-        return file.endsWith(".dat");
+        return file.toString().endsWith(".dat");
     }
 
     public void startProcessingFile(String path) {

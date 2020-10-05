@@ -67,6 +67,15 @@ public class Report {
                 '}';
     }
 
+    public String toStringFormatted() {
+        return "Relatório para o arquivo " + getPath() + System.getProperty("line.separator") +
+                "Número de Clientes: " + getClientsQuantity() + System.getProperty("line.separator") +
+                "Número de Vendedores: " + getSellersQuantity() + System.getProperty("line.separator") +
+                "Venda mais cara: " + getMostExpensiveSaleId() + System.getProperty("line.separator") +
+                "Pior desempenho: " + System.getProperty("line.separator") + getWorstSeller() + System.getProperty("line.separator");
+
+    }
+
     public String getPath() {
         return path;
     }

@@ -5,8 +5,8 @@ import ch.hickmann.data.analysis.saga.entities.SagaEntity;
 import ch.hickmann.data.analysis.saga.enumerations.SagaStatusEnum;
 import ch.hickmann.data.analysis.saga.repositories.SagaRepository;
 import ch.hickmann.data.analysis.services.IdempotenceService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.jms.core.JmsTemplate;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SagaService {
 
-    private final Logger logger = LogManager.getLogger(SagaService.class);
+    private final Logger logger = LoggerFactory.getLogger(SagaService.class);
     private final SagaRepository sagaRepository;
     private final JmsTemplate jmsTemplate;
     private final ConversionService conversionService;
@@ -42,7 +42,17 @@ public class SagaService {
             saveAndSendSagaMessage(sagaEntity);
         } else {
             logger.info("Duplicated file found - {}", path);
+            error(path);
         }
+    }
+
+    public void error(String path) {
+        SagaEntity sagaEntity = sagaRepository.findByPath(path);
+        sagaEntity.setStatus(SagaStatusEnum.ERROR);
+
+        saveAndSendSagaMessage(sagaEntity);
+
+        logger.info("Saga ERROR - {}", path);
     }
 
     public void complete(String path) {

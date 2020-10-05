@@ -11,11 +11,10 @@ public class Seller {
 
     @Override
     public String toString() {
-        return "Seller{" +
-                "name='" + name + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", wage=" + wage +
-                '}';
+        return "Vendedor:" + System.getProperty("line.separator") +
+                "Nome: " + name + System.getProperty("line.separator") +
+                "CPF:  " + cpf  + System.getProperty("line.separator") +
+                "Salário: R$" + wage + System.getProperty("line.separator");
     }
 
     public Seller() {

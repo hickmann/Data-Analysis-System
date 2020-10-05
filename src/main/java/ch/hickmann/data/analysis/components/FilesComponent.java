@@ -5,13 +5,17 @@ import ch.hickmann.data.analysis.domains.ProcessedFile;
 import ch.hickmann.data.analysis.domains.Sale;
 import ch.hickmann.data.analysis.domains.Seller;
 import ch.hickmann.data.analysis.domains.exceptions.FileException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import ch.hickmann.data.analysis.saga.services.SagaService;
+import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +23,7 @@ import java.util.List;
 @Component
 public class FilesComponent {
 
-    private static final Logger logger = LogManager.getLogger(FilesComponent.class);
+    private static final Logger logger = LoggerFactory.getLogger(FilesComponent.class);
     private static final String SELLER_CODE = "001";
     private static final String CLIENT_CODE = "002";
     private static final String SALE_CODE = "003";
@@ -30,11 +34,13 @@ public class FilesComponent {
     private final SellersComponent sellersComponent;
     private final ClientsComponent clientsComponent;
     private final SalesComponent salesComponent;
+    private final SagaService sagaService;
 
-    public FilesComponent(SellersComponent sellersComponent, ClientsComponent clientsComponent, SalesComponent salesComponent) {
+    public FilesComponent(SellersComponent sellersComponent, ClientsComponent clientsComponent, SalesComponent salesComponent, SagaService sagaService) {
         this.sellersComponent = sellersComponent;
         this.clientsComponent = clientsComponent;
         this.salesComponent = salesComponent;
+        this.sagaService = sagaService;
     }
 
     public ProcessedFile process(String path) {
@@ -43,7 +49,7 @@ public class FilesComponent {
         List<String> fileLines = readFileLines(path);
         ProcessedFile processedFile = process(fileLines);
 
-        return null;
+        return processedFile;
     }
 
     public ProcessedFile process(List<String> fileLines) {
@@ -86,8 +92,14 @@ public class FilesComponent {
         try {
             bytes = Files.readAllBytes(Paths.get(path));
         } catch (IOException e) {
+            sagaService.error(path);
+            logger.error("It was not possible to read file. - {}", path);
             throw new FileException("It was not possible to read file.");
         }
         return new String(bytes);
+    }
+
+    public void saveReport(String path, String content) throws IOException {
+        FileUtils.write(new File(path), content, "UTF-8");
     }
 }
