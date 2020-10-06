@@ -28,4 +28,21 @@ public class SalesTest {
         //THEN
         Assertions.assertEquals(generatedValue, expectedValue);
     }
+
+    @Test
+    public void shouldReturnZeroTotalValue() {
+        //GIVEN
+        List<SoldItem> soldItemList = SoldItemsFixture.generateSoldItemsList(0);
+        Sale sale = Sale.builder()
+                .items(soldItemList)
+                .build();
+
+        BigDecimal expectedValue = BigDecimal.ZERO;
+
+        //WHEN
+        BigDecimal generatedValue = sale.totalValue();
+
+        //THEN
+        Assertions.assertEquals(generatedValue, expectedValue);
+    }
 }

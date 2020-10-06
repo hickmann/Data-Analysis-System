@@ -22,17 +22,12 @@ public class SoldItemsFixture {
         return list;
     }
 
-    private static Integer randomInteger() {
-        Random random = new Random();
-        return random.nextInt((RAND_MAX - RAND_MIN) + 1) + RAND_MIN;
-    }
-
     public static SoldItem generateSoldItem() {
 
         return SoldItem.builder()
                 .quantity(2)
                 .price(new BigDecimal(20))
-                .id(Long.valueOf(randomInteger()))
+                .id(Long.valueOf(1))
                 .build();
     }
 

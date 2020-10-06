@@ -2,6 +2,7 @@ package ch.hickmann.data.analysis.components;
 
 import ch.hickmann.data.analysis.domains.Client;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import static java.util.Objects.isNull;
 
@@ -15,7 +16,10 @@ public class ClientsComponent extends ProcessComponent {
     private static final String CLIENT_DELIMITER = "ç";
 
     public Client processClientLine(String line) {
+        Assert.notNull(line, "Linha não deve ser null.");
         String[] fields = getFields(line, CLIENT_DELIMITER);
+        Assert.isTrue((fields.length == 3), "Linha deveria conter 3 parâmetros válidos.");
+
         return Client.builder()
                 .cnpj(extractCnpj(fields))
                 .businessArea(extractBusinessArea(fields))
