@@ -3,6 +3,7 @@ package ch.hickmann.data.analysis.components;
 import ch.hickmann.data.analysis.domains.Sale;
 import ch.hickmann.data.analysis.domains.SoldItem;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -23,7 +24,9 @@ public class SalesComponent extends ProcessComponent {
     }
 
     public Sale processSaleLine(String line) {
+        Assert.notNull(line, "Linha não deve ser null.");
         String[] fields = getFields(line, SELLER_DELIMITER);
+        Assert.isTrue((fields.length == 3), "Linha deveria conter 3 parâmetros válidos.");
 
         return Sale.builder()
                 .id(extractId(fields))

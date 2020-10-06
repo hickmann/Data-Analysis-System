@@ -2,6 +2,7 @@ package ch.hickmann.data.analysis.components;
 
 import ch.hickmann.data.analysis.domains.Seller;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 
@@ -16,7 +17,10 @@ public class SellersComponent extends ProcessComponent {
     private final String SELLER_DELIMITER = "ç";
 
     public Seller processSellerLine(String line) {
+        Assert.notNull(line, "Linha não deve ser null.");
         String[] fields = getFields(line, SELLER_DELIMITER);
+        Assert.isTrue((fields.length == 3), "Linha deveria conter 3 parâmetros válidos.");
+
         return Seller.builder()
                 .cpf(extractCPF(fields))
                 .name(extractName(fields))
